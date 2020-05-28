@@ -1,0 +1,18 @@
+.movie-item{
+    -webkit-box-shadow: 1px 1px 6px 1px rgba(148,148,148,1);
+    -moz-box-shadow: 1px 1px 6px 1px rgba(148,148,148,1);
+    box-shadow: 1px 1px 6px 1px rgba(148,148,148,1);
+    border-radius: 10px;
+    margin: 6px;
+    padding-top: 10px 0;
+    padding-bottom: 10px 0;
+}
+
+.movie-title{
+    font-weight: bolder;
+}
+
+.score{
+    color: #FF5A5F;
+    font-weight: bolder;
+}
