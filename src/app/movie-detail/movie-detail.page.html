@@ -1,9 +1,19 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>movie detail</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{information?.title}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button><ion-icon name="cog-outline"></ion-icon></ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
-
+ 
 <ion-content>
-
+  <ion-card>
+    <ion-card-content>
+      <ion-img [src]="information?.poster"></ion-img>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
