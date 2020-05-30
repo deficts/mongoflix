@@ -1,8 +1,8 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title ion-text-center>MongoFlix</ion-title>
+    <ion-title ion-text-center>Mongo<span class="colored-title">Flix</span></ion-title>
     <ion-buttons slot="end">
-      <ion-button><ion-icon name="add-circle-outline"></ion-icon></ion-button>
+      <ion-button [routerLink]="['/add-movie']"><ion-icon name="add-circle-outline"></ion-icon></ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -11,16 +11,14 @@
   <ion-searchbar sticky [(ngModel)]="searchTerm" (ionChange)="onSearchChanged($event)"></ion-searchbar>
   <ion-item lines="none">
     <ion-label>Select a Genre</ion-label>
-    <ion-select [(ngModel)]="searchType" (ionChange)="onSearchChanged($event)">
-      <ion-select-option *ngFor="let item of searchValues" >{{item}}</ion-select-option>
+    <ion-select [(ngModel)]="selectedType" (ionChange)="onSearchChanged($event)">
+      <ion-select-option *ngFor="let item of this.searchValues" [value]="item">{{item}}</ion-select-option>
     </ion-select>  
   </ion-item>
 
   <ion-list>
-    <ion-item lines="none" class="movie-item" button *ngFor="let item of (results | async)" [routerLink]="['/','movies',item.id]">
-      <ion-avatar slot="start" >
-        <ion-img [src]=item.poster></ion-img>
-      </ion-avatar>
+    <ion-item color="medium-tint" lines="none" class="movie-item" button *ngFor="let item of (results | async)" [routerLink]="['/','movies',item.id]">
+      <ion-img class="card-image" slot="start" [src]=item.poster (ionError)="this.updateSrc(item)"></ion-img>
       <ion-label text-wrap>
         <h2 class="movie-title">{{item.title}}</h2>
         <p>{{item.year}}</p>
