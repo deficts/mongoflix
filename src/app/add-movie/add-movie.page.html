@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title ion-text-center>Mongo<span class="colored-title">Flix</span></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form>
+    <ion-item >
+      <ion-label position="floating">Title:</ion-label>
+      <ion-input required type="text" [(ngModel)]="obj.title" name="title"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Genre:</ion-label>
+      <ion-input required type="text" [(ngModel)]="obj.genre" name="genre"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Score:</ion-label>
+      <ion-input required type="number" [(ngModel)]="obj.score" name="title"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Year:</ion-label>
+      <ion-input required type="number" [(ngModel)]="obj.year" name="title"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Webpage:</ion-label>
+      <ion-input type="text" [(ngModel)]="obj.link" name="title"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">ImageURL:</ion-label>
+      <ion-input type="text" [(ngModel)]="obj.poster" name="title"></ion-input>
+    </ion-item>
+  </form>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-button (click)="createObject()" expand="block">
+      Save
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>
