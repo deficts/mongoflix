@@ -5,61 +5,64 @@
     </ion-buttons>
     <ion-title>{{information?.title}}</ion-title>
     <ion-buttons slot="end">
-      <ion-button [routerLink]="['/','edit-movie',information?.id]" *ngIf="information"><ion-icon name="cog-outline"></ion-icon></ion-button>
+      <ion-button [routerLink]="['/','edit-movie',information?.id]" *ngIf="information"><ion-icon danger name="cog-outline"></ion-icon></ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
  
 <ion-content>
-  <ion-row>
-    <ion-col></ion-col>
-    <ion-col>
-        <ion-img class="poster" [src]="information?.poster" (ionError)="this.updateSrc()"  ></ion-img>
-    </ion-col>
-    <ion-col></ion-col>
-  </ion-row>
-  <ion-row>
-    <ion-col class="ion-text-center">
-      <ion-text text-wrap >
-        <h1 class="movie-title">{{information?.title}}</h1>
-      </ion-text>
+  <ion-card>
+    <ion-card-content>
       <ion-row>
+        <ion-col></ion-col>
         <ion-col>
-          <ion-item lines="none">
-            <ion-icon name="calendar" slot="start" color="secondary"></ion-icon>
-            <ion-label> {{information?.year}} </ion-label>
+          <ion-img class="poster" [src]="information?.poster" (ionError)="this.updateSrc()"  ></ion-img>
+        </ion-col>
+        <ion-col></ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="ion-text-center">
+          <ion-text color="dark">
+            <h1 class="movie-title">{{information?.title}}</h1>
+          </ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col color="dark" class="ion-text-center">
+          <h4 >{{information?.year}}</h4>
+        </ion-col>
+      </ion-row>
+      <ion-row class="genre-container">
+        <ion-col color="light" class="ion-text-center" *ngFor="let genre of genres" >
+          <div class="genre-capsule">
+            <p>
+              {{genre}}
+            </p>
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col></ion-col>
+        <ion-col>
+          <ion-item color="light" lines="none" class="item-box">
+            <ion-icon slot="start" name="star" class="star"></ion-icon> 
+            <ion-label>
+              Score: {{information?.score}}
+            </ion-label>
           </ion-item>
         </ion-col>
-        <ion-col>
-          <ion-item lines="none">
-            <ion-icon name="star" slot="start" class="star"></ion-icon>
-            <ion-label> {{information?.score}} </ion-label>
-          </ion-item>
-        </ion-col>
-      </ion-row>
-      
-      
-      <ion-row>
-        <ion-col *ngFor="let item of genres">
-          <ion-item lines="none" class="genre-capsule ion-text-center" >
-            <ion-label  >{{item}}</ion-label>
-          </ion-item>
-        </ion-col>
+        <ion-col></ion-col>
       </ion-row>
       <ion-row>
         <ion-col>
-          <ion-button color="secondary" expand="block" (click)="openWebsite()">
-            Go to Webpage
-          </ion-button>
+          <ion-button expand="block" (click)="openWebsite()">Go to website</ion-button>
         </ion-col>
       </ion-row>
       <ion-row>
-        <ion-col>
-          <ion-button class="trash" icon-only expand="block" (click)="deleteObject()"  >
-            <ion-icon name="trash"></ion-icon>
-          </ion-button>
-        </ion-col>
+
       </ion-row>
-    </ion-col>
-  </ion-row>
+    </ion-card-content>
+  </ion-card>
+
+  
 </ion-content>

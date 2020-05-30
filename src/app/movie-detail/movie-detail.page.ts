@@ -13,13 +13,12 @@ export class MovieDetailPage implements OnInit {
   genres=null;
   constructor(
     private activatedRoute: ActivatedRoute, 
-    private movieService:MovieService,
-    private router: Router,
-    private alertCtrl: AlertController) { 
+    private movieService:MovieService
+    ) { 
 
   }
 
-  ngOnInit() {
+  getInfo(){
     let id = this.activatedRoute.snapshot.paramMap.get('id');
     this.movieService.getInfo(id).subscribe(res=>{
       console.log(res[0]);
@@ -28,32 +27,21 @@ export class MovieDetailPage implements OnInit {
       console.log(this.genres);
     })
   }
+  
+  ngOnInit() {
+    this.getInfo();
+  }
+
+  ionViewWillEnter(){
+    if(this.information){
+      console.log("refresh");
+      this.getInfo();
+    }
+  }
 
   updateSrc(event){
     console.log("error");
     this.information.poster='./assets/default.png'
-  }
-
-  deleteObject(){
-    this.alertCtrl.create({
-      header:'Are you sure?', 
-      message:'Do you really want to delete this movie?',
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel'
-        },
-        {
-          text: 'Delete',
-          handler:()=>{
-            this.movieService.deleteObject(this.information.id);
-            this.router.navigate(["movies"]);
-          }
-        }
-      ]
-    }).then(alertEl=>{
-      alertEl.present();
-    });
   }
 
   openWebsite(){

@@ -4,6 +4,9 @@
       <ion-back-button defaultHref="/movies/{{information?.id}}"></ion-back-button>
     </ion-buttons>
     <ion-title ion-text-center>Mongo<span class="colored-title">Flix</span></ion-title>
+    <ion-buttons slot="end">
+      <ion-button *ngIf="information" (click)="deleteObject()"><ion-icon name="trash-outline" ></ion-icon></ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
