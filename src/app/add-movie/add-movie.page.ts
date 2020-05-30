@@ -21,24 +21,49 @@ export class AddMoviePage implements OnInit {
     private movieServie:MovieService,
     private alertCtrl:AlertController) { }
 
-  createObject(){
-    this.movieServie.createObject(this.obj).subscribe(res=>{
-      if(res!=null){
-        console.log(res);
-        this.alertCtrl.create({
-          header:"Operation succesful!",
-          message:"The fields have been updated",
-          buttons:[
-            {
-              text:'Close',
-              role:'close'
-            }
-          ]
-        }).then(alertEl=>{
-          alertEl.present();
-        });
+  validateObj(obj){
+    for (var key in obj){
+      if(obj[key]==="" || obj[key]===null){
+        return false;
       }
-    })
+    }
+    return true;
+  }
+
+  createObject(){
+    if(this.validateObj(this.obj)){
+      this.movieServie.createObject(this.obj).subscribe(res=>{
+        if(res!=null){
+          console.log(res);
+          this.alertCtrl.create({
+            header:"Operation succesful!",
+            message:"The fields have been updated",
+            buttons:[
+              {
+                text:'Close',
+                role:'close'
+              }
+            ]
+          }).then(alertEl=>{
+            alertEl.present();
+          });
+        }
+      })
+    }else{
+      this.alertCtrl.create({
+        header:"You left fields empty!",
+        message:"Fill all the fields",
+        buttons:[
+          {
+            text:'Close',
+            role:'close'
+          }
+        ]
+      }).then(alertEl=>{
+        alertEl.present();
+      });
+    }
+    
   }
   
   ngOnInit() {
