@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/movies/{{information?.id}}"></ion-back-button>
+    </ion-buttons>
+    <ion-title ion-text-center>Mongo<span class="colored-title">Flix</span></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form>
+    <ion-item >
+      <ion-label position="floating">Title:</ion-label>
+      <ion-input type="text" [(ngModel)]="information.title" *ngIf="information" name="title"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Genre:</ion-label>
+      <ion-input type="text" [(ngModel)]="information.genre"  *ngIf="information" name="genre"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Score:</ion-label>
+      <ion-input type="number" [(ngModel)]="information.score" *ngIf="information" name="score"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Year:</ion-label>
+      <ion-input type="number" [(ngModel)]="information.year" *ngIf="information" name="year"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Webpage:</ion-label>
+      <ion-input type="text" [(ngModel)]="information.link" *ngIf="information" name="link"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">ImageURL:</ion-label>
+      <ion-input type="text" [(ngModel)]="information.poster" *ngIf="information" name="poster"></ion-input>
+    </ion-item>
+  </form>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-button (click)=editData(this.information) expand="block">
+      Save
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>
