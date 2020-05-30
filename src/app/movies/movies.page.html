@@ -17,9 +17,9 @@
   </ion-item>
 
   <ion-list>
-    <ion-item color="medium-tint" lines="none" class="movie-item" button *ngFor="let item of (results | async)" [routerLink]="['/','movies',item.id]">
+    <ion-item color="light" lines="none" class="movie-item" button *ngFor="let item of (results | async)" [routerLink]="['/','movies',item.id]">
       <ion-img class="card-image" slot="start" [src]=item.poster (ionError)="this.updateSrc(item)"></ion-img>
-      <ion-label text-wrap>
+      <ion-label class="movie-info" text-wrap>
         <h2 class="movie-title">{{item.title}}</h2>
         <p>{{item.year}}</p>
       </ion-label>
