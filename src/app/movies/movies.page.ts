@@ -10,15 +10,20 @@ import { SearchType, MovieService } from '../services/movie.service';
 export class MoviesPage implements OnInit {
   results: Observable<any>;
   searchTerm: string = '';
-  searchType: SearchType=SearchType.all;
+  searchType = SearchType;
+  selectedType;
   searchValues=this.movieService.searchValues;
   constructor(private movieService: MovieService) { }
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  updateSrc(i){
+    console.log("error");
+    console.log(i)
+    i.poster='./assets/default.png'
   }
 
   onSearchChanged(){
-    console.log(this.searchTerm,this.searchType)
-    this.results = this.movieService.searchData(this.searchTerm,this.searchType)
+    this.results = this.movieService.searchData(this.searchTerm,this.searchType[this.selectedType])
   }
 }
