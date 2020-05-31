@@ -1,6 +1,7 @@
 .poster{
     border-radius: 10px !important;
     width: 12em;
+    margin: 0 auto;
     margin-top: 1em;
     margin-bottom: 1em;
     overflow: hidden;
@@ -24,6 +25,7 @@
 
 .movie-title{
     //color:black;
+    text-align: center;;
     font-size: 2em;
     font-weight: bolder !important;
 }
@@ -47,4 +49,7 @@
 .star{
     width: 15px;
     color:#efb810;
+}
+.score{
+    text-align: center;
 }

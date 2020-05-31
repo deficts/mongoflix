@@ -13,15 +13,15 @@
 <ion-content>
   <ion-card>
     <ion-card-content>
-      <ion-row>
+      <ion-row text-align="center">
         <ion-col></ion-col>
-        <ion-col>
+        <ion-col >
           <ion-img class="poster" [src]="information?.poster" (ionError)="this.updateSrc()"  ></ion-img>
         </ion-col>
         <ion-col></ion-col>
       </ion-row>
       <ion-row>
-        <ion-col class="ion-text-center">
+        <ion-col>
           <ion-text color="dark">
             <h1 class="movie-title">{{information?.title}}</h1>
           </ion-text>
@@ -46,7 +46,7 @@
         <ion-col>
           <ion-item color="light" lines="none" class="item-box">
             <ion-icon slot="start" name="star" class="star"></ion-icon> 
-            <ion-label>
+            <ion-label class="score">
               Score: {{information?.score}}
             </ion-label>
           </ion-item>

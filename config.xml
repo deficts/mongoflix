@@ -5,6 +5,7 @@
     <author email="diegoar7@live.com" href="http://github.com/deficts">Diego Arredondo</author>
     <content src="index.html" />
     <access origin="*" />
+    <allow-navigation href="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />
