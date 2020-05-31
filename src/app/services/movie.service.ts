@@ -32,9 +32,9 @@ export class MovieService {
   constructor(private http: HttpClient) { }
   searchValues=Object.keys(SearchType);
 
-  searchData(title:string, type): Observable<any>{
+  searchData(title:string, type,gte,lte): Observable<any>{
     if(title){
-      return this.http.get(`${this.url}?title=${(title)}&genre=${type}`).pipe(
+      return this.http.get(`${this.url}?title=${(title)}&genre=${type}&gte=${gte}&lte=${lte}`).pipe(
         map(results=>{
           return results;
         })
