@@ -15,6 +15,7 @@ export class MoviesPage implements OnInit {
   selectedType = 'All';
   selectedRating = {lower:0,upper:10};
   searchValues=this.movieService.searchValues;
+  spinner=false;
   constructor(private movieService: MovieService, private pickerCtrl: PickerController ) { }
 
   ngOnInit() {}
@@ -26,15 +27,24 @@ export class MoviesPage implements OnInit {
   }
 
   ionViewWillEnter(){
-    console.log("borrado")
     if(this.results){
-      console.log("refresh")
+      if(this.searchTerm){
+        this.spinner=true;
+      }
       this.results = this.movieService.searchData(this.searchTerm,this.searchType[this.selectedType],this.selectedRating.lower,this.selectedRating.upper)
+      this.results.subscribe((res)=>{
+        this.spinner=false;
+      });
     }
   }
 
   onSearchChanged(){
-    console.log(this.selectedRating);
+    if(this.searchTerm){
+      this.spinner=true;
+    }
     this.results = this.movieService.searchData(this.searchTerm,this.searchType[this.selectedType],this.selectedRating.lower,this.selectedRating.upper)
+    this.results.subscribe((res)=>{
+      this.spinner=false;
+    });
   }
 }
