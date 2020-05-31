@@ -8,12 +8,20 @@
 </ion-header>
 
 <ion-content>
-  <ion-searchbar sticky [(ngModel)]="searchTerm" (ionChange)="onSearchChanged($event)"></ion-searchbar>
+  <ion-searchbar [(ngModel)]="searchTerm" (ionChange)="onSearchChanged($event)"></ion-searchbar>
+
   <ion-item lines="none">
-    <ion-label>Select a Genre</ion-label>
+    <ion-label>Genre</ion-label>
     <ion-select [(ngModel)]="selectedType" (ionChange)="onSearchChanged($event)">
       <ion-select-option *ngFor="let item of this.searchValues" [value]="item">{{item}}</ion-select-option>
     </ion-select>  
+  </ion-item>
+
+  <ion-item lines="none">
+    <ion-label>Rating</ion-label>
+    <ion-badge>{{selectedRating.lower}}</ion-badge>
+    <ion-range [(ngModel)]="selectedRating" dualKnobs='true' min='0' max='10' step='1'  snaps="true" (ionChange)="onSearchChanged($event)"></ion-range>
+    <ion-badge>{{selectedRating.upper}}</ion-badge>
   </ion-item>
 
   <ion-list>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { SearchType, MovieService } from '../services/movie.service';
+import { PickerController } from '@ionic/angular';
 
 @Component({
   selector: 'app-movies',
@@ -12,8 +13,9 @@ export class MoviesPage implements OnInit {
   searchTerm: string = '';
   searchType = SearchType;
   selectedType = 'All';
+  selectedRating = {lower:0,upper:10};
   searchValues=this.movieService.searchValues;
-  constructor(private movieService: MovieService) { }
+  constructor(private movieService: MovieService, private pickerCtrl: PickerController ) { }
 
   ngOnInit() {}
 
@@ -27,11 +29,12 @@ export class MoviesPage implements OnInit {
     console.log("borrado")
     if(this.results){
       console.log("refresh")
-      this.results = this.movieService.searchData(this.searchTerm,this.searchType[this.selectedType])
+      this.results = this.movieService.searchData(this.searchTerm,this.searchType[this.selectedType],this.selectedRating.lower,this.selectedRating.upper)
     }
   }
 
   onSearchChanged(){
-    this.results = this.movieService.searchData(this.searchTerm,this.searchType[this.selectedType])
+    console.log(this.selectedRating);
+    this.results = this.movieService.searchData(this.searchTerm,this.searchType[this.selectedType],this.selectedRating.lower,this.selectedRating.upper)
   }
 }
