@@ -30,6 +30,8 @@ apiRouter.get('/', function(req, res, next) {
 apiRouter.get('/movies/',(req,res)=>{
     var title = req.query.title;
     var genre = req.query.genre;
+    var gte = req.query.gte;
+    var lte = req.query.lte;
     var id = req.query.id;
     console.log(title);
     console.log(movies);
@@ -42,7 +44,7 @@ apiRouter.get('/movies/',(req,res)=>{
             res.json(recs.slice(0,limit));
         })
     }else{
-        movies.find({"title":{$regex:title,'$options' : 'i'},"genre":{$regex:genre, '$options' : 'i'},},(err,recs)=>{
+        movies.find({"title":{$regex:title,'$options' : 'i'},"genre":{$regex:genre, '$options' : 'i'},"score":{$gte:gte,$lte:lte}},(err,recs)=>{
             if(err){
                 console.dir(err);
             }
