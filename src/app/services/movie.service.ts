@@ -33,13 +33,11 @@ export class MovieService {
   searchValues=Object.keys(SearchType);
 
   searchData(title:string, type,gte,lte): Observable<any>{
-    if(title){
       return this.http.get(`${this.url}?title=${(title)}&genre=${type}&gte=${gte}&lte=${lte}`).pipe(
         map(results=>{
           return results;
         })
       );
-    }
   }
 
   getInfo(id){

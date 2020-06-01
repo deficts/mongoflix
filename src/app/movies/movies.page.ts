@@ -16,7 +16,7 @@ export class MoviesPage implements OnInit {
   selectedRating = {lower:0,upper:10};
   searchValues=this.movieService.searchValues;
   spinner=false;
-  constructor(private movieService: MovieService, private pickerCtrl: PickerController ) { }
+  constructor(private movieService: MovieService) { }
 
   ngOnInit() {}
 
@@ -28,9 +28,7 @@ export class MoviesPage implements OnInit {
 
   ionViewWillEnter(){
     if(this.results){
-      if(this.searchTerm){
-        this.spinner=true;
-      }
+      this.spinner=true;
       this.results = this.movieService.searchData(this.searchTerm,this.searchType[this.selectedType],this.selectedRating.lower,this.selectedRating.upper)
       this.results.subscribe((res)=>{
         this.spinner=false;
@@ -39,9 +37,7 @@ export class MoviesPage implements OnInit {
   }
 
   onSearchChanged(){
-    if(this.searchTerm){
-      this.spinner=true;
-    }
+    this.spinner=true;
     this.results = this.movieService.searchData(this.searchTerm,this.searchType[this.selectedType],this.selectedRating.lower,this.selectedRating.upper)
     this.results.subscribe((res)=>{
       this.spinner=false;
