@@ -28,6 +28,9 @@ export class EditMoviePage implements OnInit {
 
   validateObj(obj){
     for (var key in obj){
+      if(key=='link' || key=='poster'){
+        continue;
+      }
       if(obj[key]==="" || obj[key]===null){
         return false;
       }
@@ -35,9 +38,22 @@ export class EditMoviePage implements OnInit {
     return true;
   }
 
+  validUrls(obj){
+    try{
+      if(obj.link != ''){
+        var url = new URL(obj.link);
+      }
+      if(obj.poster != ''){
+        var url2 = new URL(obj.poster);
+      }
+    }catch(_){
+      return false;
+    }
+    return true;
+  }
+
   editData(obj){
-    console.log("metodo");
-    if(this.validateObj(obj)){
+    if(this.validateObj(obj) && this.validUrls(obj)){
       this.movieService.editData(obj).subscribe(res=>{
         if(res!=null){
           this.alertCtrl.create({
@@ -54,10 +70,23 @@ export class EditMoviePage implements OnInit {
           });
         }
       })
-    }else{
+    }else if(!this.validateObj(obj)){
       this.alertCtrl.create({
         header:"You left fields empty!",
         message:"Fill all the fields",
+        buttons:[
+          {
+            text:'Close',
+            role:'close'
+          }
+        ]
+      }).then(alertEl=>{
+        alertEl.present();
+      });
+    }else if(!this.validUrls(obj)){
+      this.alertCtrl.create({
+        header:"You entered invalid URLS!",
+        message:"Enter valid URLS or leave them empty",
         buttons:[
           {
             text:'Close',
@@ -71,7 +100,6 @@ export class EditMoviePage implements OnInit {
   }
 
   deleteObject(){
-    console.log("hola");
     this.alertCtrl.create({
       header:'Are you sure?', 
       message:'Do you really want to delete this movie?',
